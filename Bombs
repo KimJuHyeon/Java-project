@@ -1,0 +1,107 @@
+#include <stdio.h>
+
+#define X_VALUE 5
+#define Y_VALUE 5
+
+int main()
+{
+	int i = 0;
+	int j = 0;
+	int count=0;
+	char grid[X_VALUE][Y_VALUE+1] = {0};
+	int numOfBombs[X_VALUE][Y_VALUE+1] = {0};
+
+	printf("Input Grid\n");
+	for(i = 0; i < X_VALUE; i++)
+		scanf("%s", grid[i]);
+	
+
+	for(i=0;i<X_VALUE;i++)
+	{
+		for(j=0;j<Y_VALUE;j++)
+		{
+			if(grid[i][j]=='*')
+			{
+				printf("*");
+			}
+			else if(i==0 && j==0)
+			{
+				if(grid[i][j+1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j+1]=='*') numOfBombs[i][j] = ++count;
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else if(i==0)
+			{
+				if(grid[i][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j]=='*') numOfBombs[i][j] = ++count;
+				if(j!=Y_VALUE-1)
+				{
+					if(grid[i][j+1]=='*') numOfBombs[i][j] = ++count;
+					if(grid[i+1][j+1]=='*') numOfBombs[i][j] = ++count;
+				}
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else if(j==0)
+			{
+				if(grid[i-1][j]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i-1][j+1]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i][j+1]=='*')numOfBombs[i][j] = ++count;
+				if(i!=X_VALUE-1)
+				{
+					if(grid[i+1][j]=='*') numOfBombs[i][j] = ++count;
+					if(grid[i+1][j+1]=='*') numOfBombs[i][j] = ++count;
+				}
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else if(i==X_VALUE-1 && j==Y_VALUE-1)
+			{
+				if(grid[i-1][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i-1][j]=='*') numOfBombs[i][j] =++count;
+				if(grid[i][j-1]=='*') numOfBombs[i][j] = ++count;
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else if(i==X_VALUE-1)
+			{
+				if(grid[i-1][j-1]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i-1][j]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i-1][j+1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i][j-1]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i][j+1]=='*') numOfBombs[i][j] = ++count;
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else if(j==Y_VALUE-1)
+			{
+				if(grid[i-1][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i-1][j]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j-1]=='*')numOfBombs[i][j] = ++count;
+				if(grid[i+1][j]=='*')numOfBombs[i][j] = ++count;
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+			else
+			{
+				if(grid[i-1][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i-1][j]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i-1][j+1]=='*') numOfBombs[i][j] =++count;
+				if(grid[i][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i][j+1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j-1]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j]=='*') numOfBombs[i][j] = ++count;
+				if(grid[i+1][j+1]=='*') numOfBombs[i][j] = ++count;
+				printf("%d", numOfBombs[i][j]);
+				count=0;
+			}
+		
+		}
+		printf("\n");
+	}
+
+}
